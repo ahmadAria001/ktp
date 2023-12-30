@@ -7,8 +7,13 @@ export default defineConfig({
         laravel({
             input: ["resources/css/app.css", "resources/js/app.js"],
             refresh: true,
+            ssr: "resources/js/ssr.js",
         }),
-        svelte(),
+        svelte({
+            compilerOptions: {
+                hydratable: true,
+            },
+        }),
     ],
     resolve: (name) => {
         const pages = import.meta.glob("./Pages/**/*.svelte", { eager: true });
