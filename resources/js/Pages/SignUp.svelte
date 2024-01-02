@@ -10,16 +10,17 @@
     import ApplicationLogo from "../Components/ApplicationLogo.svelte";
     import { checkTheme } from "../colorThemeVer";
 
-    export let canResetPassword, status;
+    export let status;
 
     const form = useForm({
+        username: "",
         email: "",
         password: "",
         remember: false,
     });
 
     const submit = () => {
-        $form.post(route("login"), {
+        $form.post(route("home"), {
             onFinish: () => $form.reset("password"),
         });
     };
@@ -28,7 +29,7 @@
 </script>
 
 <svelte:head>
-    <title>Log in</title>
+    <title>Sign Up</title>
 </svelte:head>
 
 <GuestLayout>
@@ -54,6 +55,26 @@
 
     <form on:submit|preventDefault={submit}>
         <div>
+            <InputLabel
+                for="username"
+                value="Username"
+                classes="dark:text-Neutral/20"
+            />
+
+            <TextInput
+                id="username"
+                type="text"
+                bind:value={$form.username}
+                required
+                autofocus
+                autocomplete="username"
+                placeholder="Username"
+                classes="dark:text-Neutral/80 dark:bg-Neutral/20 dark:border-transparent text-sm border-none font-sansJKTPlus bg-[#F6F6F6]"
+            />
+
+            <InputError message={$form.errors.username} />
+        </div>
+        <div class="mt-4">
             <InputLabel
                 for="email"
                 value="Email"
@@ -94,23 +115,13 @@
             <InputError message={$form.errors.password} />
         </div>
 
-        <div class="block mt-4">
-            <label class="flex items-center">
-                <Checkbox name="remember" bind:checked={$form.remember} />
-                <span
-                    class="ml-2 text-sm text-Neutral/70 dark:text-Neutral/20 font-sansJKTPlus"
-                    >Remember me</span
-                >
-            </label>
-        </div>
-
         <div class="mt-16">
             <PrimaryButton
                 disabled={$form.processing}
                 classes="w-full bg-[#5E51D9] h-10 rounded-full text-center border-none transition-all duration-200 ease-in hover:bg-[#756ae6]"
             >
                 <span class="w-full flex justify-center text-Neutral/10">
-                    Log in
+                    Sign Up
                 </span>
             </PrimaryButton>
         </div>

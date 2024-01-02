@@ -15,7 +15,7 @@
     </div> -->
 
     <div
-        class="w-full sm:max-w-md mt-6 p-10 bg-Neutral/10 shadow-md overflow-hidden sm:rounded-lg dark:bg-[#1F2937] dark:text-white"
+        class="w-full sm:max-w-lg p-10 bg-Neutral/10 shadow-md overflow-hidden sm:rounded-lg dark:bg-[#1F2937] dark:text-white"
     >
         <slot />
     </div>
